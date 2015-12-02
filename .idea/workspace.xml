@@ -9,30 +9,17 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f17f134f-d818-42f3-a589-de8518a76cf4" name="Default" comment="Initialize">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/packruler/backlighthandler/BacklightHandlerSetup.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/res/layout/activity_backlight_handler_setup.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/res/values/dimens.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/res/values-w820dp/dimens.xml" />
-      <change type="DELETED" beforePath="C:\Users\packr\Documents\GitHub\BacklightHandler\.idea\libraries\glide_3_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\packr\Documents\GitHub\BacklightHandler\.idea\libraries\leanback_v17_23_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\packr\Documents\GitHub\BacklightHandler\.idea\libraries\recyclerview_v7_23_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\packr\Documents\GitHub\BacklightHandler\mobile\src\main\java\com\packruler\backlighthandler\MainSetup.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\packr\Documents\GitHub\BacklightHandler\mobile\src\main\res\xml\pref_data_sync.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\packr\Documents\GitHub\BacklightHandler\mobile\src\main\res\xml\pref_general.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\packr\Documents\GitHub\BacklightHandler\mobile\src\main\res\xml\pref_headers.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\packr\Documents\GitHub\BacklightHandler\mobile\src\main\res\xml\pref_notification.xml" afterPath="" />
+    <list default="true" id="f17f134f-d818-42f3-a589-de8518a76cf4" name="Default" comment="Black screen working">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/design_23_1_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_23_1_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/src/main/res/values-v21/styles.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/mobile/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/java/com/packruler/backlighthandler/ScreenHandler.java" afterPath="$PROJECT_DIR$/mobile/src/main/java/com/packruler/backlighthandler/ScreenHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_1_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_1_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/build.gradle" afterPath="$PROJECT_DIR$/mobile/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/res/values/dimens.xml" afterPath="$PROJECT_DIR$/mobile/src/main/res/values/dimens.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/mobile.iml" afterPath="$PROJECT_DIR$/mobile/mobile.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.gradle" afterPath="$PROJECT_DIR$/settings.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_23_1_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_23_1_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_23_1_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_23_1_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tv/tv.iml" afterPath="$PROJECT_DIR$/tv/tv.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/mobile/src/main/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/src/main/res/values/styles.xml" afterPath="$PROJECT_DIR$/mobile/src/main/res/values/styles.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Backlight Handler.iws" />
@@ -64,34 +51,46 @@
       <file leaf-file-name="ScreenHandler.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/packruler/backlighthandler/ScreenHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.76869565">
-              <caret line="138" column="56" selection-start-line="138" selection-start-column="56" selection-end-line="138" selection-end-column="56" />
+            <state vertical-scroll-proportion="0.6869565">
+              <caret line="221" column="33" selection-start-line="221" selection-start-column="33" selection-end-line="221" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="class#Binder#0;class#ScreenHandler#0" expanded="true" />
-                <element signature="e#1426#1427#0" expanded="true" />
-                <element signature="e#1472#1473#0" expanded="true" />
-                <element signature="e#1517#1518#0" expanded="true" />
-                <element signature="e#1555#1556#0" expanded="true" />
+                <element signature="e#1613#1614#0" expanded="true" />
+                <element signature="e#1659#1660#0" expanded="true" />
+                <element signature="e#1704#1705#0" expanded="true" />
+                <element signature="e#1742#1743#0" expanded="true" />
                 <element signature="class#Notifiable#0;class#ScreenHandler#0" expanded="true" />
-                <element signature="class#1693:2040" expanded="true" />
-                <element signature="method#onPaused#0;class#1693:2040" expanded="true" />
-                <element signature="e#1898#1899#0" expanded="true" />
-                <element signature="e#1939#1940#0" expanded="true" />
-                <element signature="e#2101#2350#0" expanded="true" />
-                <element signature="e#2349#2350#0" expanded="true" />
+                <element signature="class#1880:2337" expanded="true" />
+                <element signature="method#onPaused#0;class#1880:2337" expanded="true" />
+                <element signature="method#onResumed#0;class#1880:2337" expanded="true" />
+                <element signature="method#onStopped#0;class#1880:2337" expanded="true" />
+                <element signature="e#2398#2647#0" expanded="true" />
+                <element signature="e#2646#2647#0" expanded="true" />
                 <element signature="method#ScreenHandler#0;class#ScreenHandler#0" expanded="true" />
                 <element signature="method#onCreate#0;class#ScreenHandler#0" expanded="true" />
                 <element signature="method#onDestroy#0;class#ScreenHandler#0" expanded="true" />
-                <element signature="e#3010#3011#0" expanded="true" />
-                <element signature="e#3049#3050#0" expanded="true" />
+                <element signature="e#3373#3374#0" expanded="true" />
+                <element signature="e#3412#3413#0" expanded="true" />
                 <element signature="method#setProjection#0;class#ScreenHandler#0" expanded="true" />
-                <element signature="e#3716#5659#0" expanded="true" />
-                <element signature="e#5658#5659#0" expanded="true" />
                 <element signature="method#makeSurface#0;class#ScreenHandler#0" expanded="true" />
+                <element signature="e#5067#6587#0" expanded="true" />
+                <element signature="e#6586#6587#0" expanded="true" />
                 <element signature="method#pullBitmap#0;class#ScreenHandler#0" expanded="true" />
-                <element signature="method#bitmapUpdated#0;class#ScreenHandler#0" expanded="true" />
+                <element signature="e#7360#7583#0" expanded="true" />
+                <element signature="e#7582#7583#0" expanded="true" />
+                <element signature="method#saveBitmap#0;class#ScreenHandler#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GLES20.java" pinned="false" current-in-tab="false">
+        <entry file="file://D:/Android/sdk/sources/android-23/android/opengl/GLES20.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="743" column="30" selection-start-line="743" selection-start-column="30" selection-end-line="743" selection-end-column="30" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -100,7 +99,7 @@
         <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/packruler/backlighthandler/BacklightHandlerSetup.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="32" column="89" selection-start-line="32" selection-start-column="89" selection-end-line="32" selection-end-column="89" />
+              <caret line="53" column="25" selection-start-line="53" selection-start-column="25" selection-end-line="53" selection-end-column="25" />
               <folding>
                 <element signature="e#1196#1350#0" expanded="true" />
                 <element signature="e#1349#1350#0" expanded="true" />
@@ -136,10 +135,10 @@
       <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mobile/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.230769">
-              <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
+            <state vertical-scroll-proportion="-6.5384617">
+              <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
               <folding>
-                <element signature="e#434#452#0" expanded="true" />
+                <element signature="e#600#618#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -151,6 +150,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="layoutResourceFile_vertical" />
       </list>
     </option>
   </component>
@@ -597,6 +597,16 @@
                 <option name="description" value="Prepare com.android.support:appcompat-v7:23.1.1" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="prepareComAndroidSupportAppcompatV72311Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support:design:23.1.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareComAndroidSupportDesign2311Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support:recyclerview-v7:23.1.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareComAndroidSupportRecyclerviewV72311Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Prepare com.android.support:support-v4:23.1.1" />
@@ -1149,6 +1159,16 @@
                 <option name="description" value="Prepare com.android.support:appcompat-v7:23.1.1" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/mobile" />
                 <option name="name" value="prepareComAndroidSupportAppcompatV72311Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support:design:23.1.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/mobile" />
+                <option name="name" value="prepareComAndroidSupportDesign2311Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support:recyclerview-v7:23.1.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/mobile" />
+                <option name="name" value="prepareComAndroidSupportRecyclerviewV72311Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Prepare com.android.support:support-v4:23.1.1" />
@@ -1916,7 +1936,7 @@
     <option name="modificationStamps">
       <map>
         <entry key="$PROJECT_DIR$" value="5793891183280" />
-        <entry key="C:\Users\packr\Documents\GitHub\BacklightHandler" value="4346987208881" />
+        <entry key="C:\Users\packr\Documents\GitHub\BacklightHandler" value="4347074911621" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -2134,7 +2154,9 @@
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/intellij/annotations/12.0/annotations-12.0.jar" />
                             <option value="D:/Android/sdk/extras/android/m2repository/com/android/support/appcompat-v7/23.1.1/appcompat-v7-23.1.1.aar" />
                             <option value="D:/Android/sdk/extras/android/m2repository/com/android/support/support-v4/23.1.1/support-v4-23.1.1.aar" />
+                            <option value="D:/Android/sdk/extras/android/m2repository/com/android/support/design/23.1.1/design-23.1.1.aar" />
                             <option value="D:/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar" />
+                            <option value="D:/Android/sdk/extras/android/m2repository/com/android/support/recyclerview-v7/23.1.1/recyclerview-v7-23.1.1.aar" />
                           </list>
                         </option>
                         <option name="path" value="$PROJECT_DIR$/mobile" />
@@ -2389,8 +2411,12 @@
       <list>
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/packruler/backlighthandler/MainSetup.java" />
         <option value="$PROJECT_DIR$/mobile/src/main/res/layout/activity_backlight_handler_setup.xml" />
-        <option value="$PROJECT_DIR$/mobile/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/mobile/src/main/java/MainActivity.java" />
+        <option value="$PROJECT_DIR$/mobile/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/mobile/src/main/res/layout/content_main.xml" />
+        <option value="$PROJECT_DIR$/mobile/src/main/java/com/packruler/backlighthandler/MainActivity.java" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/packruler/backlighthandler/BacklightHandlerSetup.java" />
+        <option value="$PROJECT_DIR$/mobile/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/mobile/src/main/java/com/packruler/backlighthandler/ScreenHandler.java" />
       </list>
     </option>
@@ -2497,6 +2523,38 @@
               <option name="myItemId" value="mobile" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BacklightHandler" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mobile" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backlighthandler" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BacklightHandler" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mobile" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -2505,7 +2563,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
@@ -2514,13 +2572,33 @@
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
     <property name="android.project.structure.last.selected" value="tv" />
     <property name="android.project.structure.proportion" value="0.15" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../grafika" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="8XV7N15A07005963" />
     <property name="restartRequiresConfirmation" value="true" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/mobile/src/main/java" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="293" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="293" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="293" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="967" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="293" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="292" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="293" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="968" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
   </component>
   <component name="RecentsManager">
     <key name="android.template.packageName">
       <recent name="com.packruler.backlighthandler" />
+    </key>
+    <key name="android.template.parentActivityClass">
+      <recent name="" />
     </key>
   </component>
   <component name="RunManager" selected="Android Application.mobile">
@@ -2645,27 +2723,6 @@
       <listeners />
       <method />
     </configuration>
-    <configuration default="false" name="tv" type="AndroidRunConfigurationType" factoryName="Android Application">
-      <module name="tv" />
-      <option name="DEPLOY" value="true" />
-      <option name="ARTIFACT_NAME" value="" />
-      <option name="PM_INSTALL_OPTIONS" value="" />
-      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
-      <option name="MODE" value="default_activity" />
-      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
-      <option name="PREFERRED_AVD" value="" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
-      <option name="FORCE_STOP_RUNNING_APP" value="true" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
-      <option name="PREFERRED_AVD" value="" />
-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="DEEP_LINK" value="" />
-      <option name="ACTIVITY_CLASS" value="" />
-      <method />
-    </configuration>
     <configuration default="false" name="mobile" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="mobile" />
       <option name="DEPLOY" value="true" />
@@ -2684,12 +2741,11 @@
       <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
       <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
       <option name="DEEP_LINK" value="" />
-      <option name="ACTIVITY_CLASS" value="" />
+      <option name="ACTIVITY_CLASS" value="com.packruler.backlighthandler.MainActivity" />
       <method />
     </configuration>
-    <list size="2">
-      <item index="0" class="java.lang.String" itemvalue="Android Application.tv" />
-      <item index="1" class="java.lang.String" itemvalue="Android Application.mobile" />
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="Android Application.mobile" />
     </list>
     <configuration name="&lt;template&gt;" type="Applet" default="true" selected="false">
       <option name="MAIN_CLASS_NAME" />
@@ -2721,7 +2777,13 @@
       <option name="project" value="LOCAL" />
       <updated>1448987833048</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Black screen working">
+      <created>1449083032259</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1449083032259</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2738,8 +2800,8 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32925472" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32995737" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2773,7 +2835,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initialize" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initialize" />
+    <MESSAGE value="Black screen working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Black screen working" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -2788,28 +2851,30 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="class#Binder#0;class#ScreenHandler#0" expanded="true" />
-            <element signature="e#1426#1427#0" expanded="true" />
-            <element signature="e#1472#1473#0" expanded="true" />
-            <element signature="e#1517#1518#0" expanded="true" />
-            <element signature="e#1555#1556#0" expanded="true" />
+            <element signature="e#1613#1614#0" expanded="true" />
+            <element signature="e#1659#1660#0" expanded="true" />
+            <element signature="e#1704#1705#0" expanded="true" />
+            <element signature="e#1742#1743#0" expanded="true" />
             <element signature="class#Notifiable#0;class#ScreenHandler#0" expanded="true" />
-            <element signature="class#1693:2040" expanded="true" />
-            <element signature="method#onPaused#0;class#1693:2040" expanded="true" />
-            <element signature="e#1898#1899#0" expanded="true" />
-            <element signature="e#1939#1940#0" expanded="true" />
-            <element signature="e#2101#2350#0" expanded="true" />
-            <element signature="e#2349#2350#0" expanded="true" />
+            <element signature="class#1880:2337" expanded="true" />
+            <element signature="method#onPaused#0;class#1880:2337" expanded="true" />
+            <element signature="method#onResumed#0;class#1880:2337" expanded="true" />
+            <element signature="method#onStopped#0;class#1880:2337" expanded="true" />
+            <element signature="e#2398#2647#0" expanded="true" />
+            <element signature="e#2646#2647#0" expanded="true" />
             <element signature="method#ScreenHandler#0;class#ScreenHandler#0" expanded="true" />
             <element signature="method#onCreate#0;class#ScreenHandler#0" expanded="true" />
             <element signature="method#onDestroy#0;class#ScreenHandler#0" expanded="true" />
-            <element signature="e#3010#3011#0" expanded="true" />
-            <element signature="e#3049#3050#0" expanded="true" />
+            <element signature="e#3373#3374#0" expanded="true" />
+            <element signature="e#3412#3413#0" expanded="true" />
             <element signature="method#setProjection#0;class#ScreenHandler#0" expanded="true" />
-            <element signature="e#3716#5659#0" expanded="true" />
-            <element signature="e#5658#5659#0" expanded="true" />
             <element signature="method#makeSurface#0;class#ScreenHandler#0" expanded="true" />
+            <element signature="e#5067#6587#0" expanded="true" />
+            <element signature="e#6586#6587#0" expanded="true" />
             <element signature="method#pullBitmap#0;class#ScreenHandler#0" expanded="true" />
-            <element signature="method#bitmapUpdated#0;class#ScreenHandler#0" expanded="true" />
+            <element signature="e#7360#7583#0" expanded="true" />
+            <element signature="e#7582#7583#0" expanded="true" />
+            <element signature="method#saveBitmap#0;class#ScreenHandler#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2847,12 +2912,50 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/AndroidManifest.xml">
+    <entry file="file://D:/Android/sdk/sources/android-23/android/hardware/display/DisplayManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.230769">
-          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.6156522">
+          <caret line="536" column="27" selection-start-line="536" selection-start-column="27" selection-end-line="536" selection-end-column="27" />
           <folding>
-            <element signature="e#434#452#0" expanded="true" />
+            <element signature="method#createVirtualDisplay#0;class#DisplayManager#0" expanded="true" />
+            <element signature="method#createVirtualDisplay#1;class#DisplayManager#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Android/sdk/sources/android-23/android/media/projection/MediaProjection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45043477">
+          <caret line="136" column="29" selection-start-line="136" selection-start-column="29" selection-end-line="136" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Android/sdk/sources/android-23/android/hardware/display/DisplayManagerGlobal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.0643477">
+          <caret line="399" column="16" selection-start-line="399" selection-start-column="16" selection-end-line="399" selection-end-column="16" />
+          <folding>
+            <element signature="method#createVirtualDisplay#0;class#DisplayManagerGlobal#0" expanded="false" />
+            <element signature="method#setVirtualDisplaySurface#0;class#DisplayManagerGlobal#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Android/sdk/sources/android-23/android/hardware/display/VirtualDisplay.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.53217393">
+          <caret line="75" column="36" selection-start-line="75" selection-start-column="36" selection-end-line="75" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Android/sdk/sources/android-23/android/graphics/SurfaceTexture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="239" column="0" selection-start-line="239" selection-start-column="0" selection-end-line="239" selection-end-column="0" />
+          <folding>
+            <element signature="e#11960#11961#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2860,7 +2963,7 @@
     <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/packruler/backlighthandler/BacklightHandlerSetup.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="89" selection-start-line="32" selection-start-column="89" selection-end-line="32" selection-end-column="89" />
+          <caret line="53" column="25" selection-start-line="53" selection-start-column="25" selection-end-line="53" selection-end-column="25" />
           <folding>
             <element signature="e#1196#1350#0" expanded="true" />
             <element signature="e#1349#1350#0" expanded="true" />
@@ -2879,35 +2982,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://D:/Android/sdk/sources/android-23/android/opengl/GLES20.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="743" column="30" selection-start-line="743" selection-start-column="30" selection-end-line="743" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.5384617">
+          <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+          <folding>
+            <element signature="e#600#618#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/java/com/packruler/backlighthandler/ScreenHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.76869565">
-          <caret line="138" column="56" selection-start-line="138" selection-start-column="56" selection-end-line="138" selection-end-column="56" />
+        <state vertical-scroll-proportion="0.6869565">
+          <caret line="221" column="33" selection-start-line="221" selection-start-column="33" selection-end-line="221" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="class#Binder#0;class#ScreenHandler#0" expanded="true" />
-            <element signature="e#1426#1427#0" expanded="true" />
-            <element signature="e#1472#1473#0" expanded="true" />
-            <element signature="e#1517#1518#0" expanded="true" />
-            <element signature="e#1555#1556#0" expanded="true" />
+            <element signature="e#1613#1614#0" expanded="true" />
+            <element signature="e#1659#1660#0" expanded="true" />
+            <element signature="e#1704#1705#0" expanded="true" />
+            <element signature="e#1742#1743#0" expanded="true" />
             <element signature="class#Notifiable#0;class#ScreenHandler#0" expanded="true" />
-            <element signature="class#1693:2040" expanded="true" />
-            <element signature="method#onPaused#0;class#1693:2040" expanded="true" />
-            <element signature="e#1898#1899#0" expanded="true" />
-            <element signature="e#1939#1940#0" expanded="true" />
-            <element signature="e#2101#2350#0" expanded="true" />
-            <element signature="e#2349#2350#0" expanded="true" />
+            <element signature="class#1880:2337" expanded="true" />
+            <element signature="method#onPaused#0;class#1880:2337" expanded="true" />
+            <element signature="method#onResumed#0;class#1880:2337" expanded="true" />
+            <element signature="method#onStopped#0;class#1880:2337" expanded="true" />
+            <element signature="e#2398#2647#0" expanded="true" />
+            <element signature="e#2646#2647#0" expanded="true" />
             <element signature="method#ScreenHandler#0;class#ScreenHandler#0" expanded="true" />
             <element signature="method#onCreate#0;class#ScreenHandler#0" expanded="true" />
             <element signature="method#onDestroy#0;class#ScreenHandler#0" expanded="true" />
-            <element signature="e#3010#3011#0" expanded="true" />
-            <element signature="e#3049#3050#0" expanded="true" />
+            <element signature="e#3373#3374#0" expanded="true" />
+            <element signature="e#3412#3413#0" expanded="true" />
             <element signature="method#setProjection#0;class#ScreenHandler#0" expanded="true" />
-            <element signature="e#3716#5659#0" expanded="true" />
-            <element signature="e#5658#5659#0" expanded="true" />
             <element signature="method#makeSurface#0;class#ScreenHandler#0" expanded="true" />
+            <element signature="e#5067#6587#0" expanded="true" />
+            <element signature="e#6586#6587#0" expanded="true" />
             <element signature="method#pullBitmap#0;class#ScreenHandler#0" expanded="true" />
-            <element signature="method#bitmapUpdated#0;class#ScreenHandler#0" expanded="true" />
+            <element signature="e#7360#7583#0" expanded="true" />
+            <element signature="e#7582#7583#0" expanded="true" />
+            <element signature="method#saveBitmap#0;class#ScreenHandler#0" expanded="true" />
           </folding>
         </state>
       </provider>

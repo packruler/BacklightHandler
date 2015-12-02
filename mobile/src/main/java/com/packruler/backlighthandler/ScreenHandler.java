@@ -4,10 +4,13 @@ import android.app.Service;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
 import android.hardware.display.DisplayManager;
 import android.hardware.display.VirtualDisplay;
 import android.media.projection.MediaProjection;
+import android.opengl.GLES11Ext;
+import android.opengl.GLES20;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -21,11 +24,13 @@ import android.view.SurfaceView;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 
 /**
  * Created by packruler on 11/25/15.
  */
 public class ScreenHandler extends Service {
+    private final String TAG = getClass().getSimpleName();
     private final static int DISPLAY_PLAYING = 0;
     private final static int DISPLAY_PAUSED = 1;
     private final static int DISPLAY_STOPPED = 2;
@@ -59,16 +64,19 @@ public class ScreenHandler extends Service {
         @Override
         public void onPaused() {
             super.onPaused();
+            Log.i(TAG, "onPaused");
             displayActive = false;
         }
 
         @Override
         public void onResumed() {
             super.onResumed();
+            Log.i(TAG, "onResumed");
         }
 
         @Override
         public void onStopped() {
+            Log.i(TAG, "onStopped");
             super.onStopped();
         }
     };
@@ -92,6 +100,7 @@ public class ScreenHandler extends Service {
         thread = new HandlerThread("BackgroundThread");
         thread.start();
         backgroundThread = new Handler(thread.getLooper());
+//        backgroundThread = new Handler(Looper.getMainLooper());
 
         makeSurface();
         instance = this;
@@ -115,13 +124,15 @@ public class ScreenHandler extends Service {
     public void setProjection(MediaProjection projection, SurfaceView surfaceView) {
         this.projection = projection;
         this.projection.registerCallback(projectionCallback, callbackHandler);
-        view = surfaceView;
-        surface = surfaceView.getHolder().getSurface();
+//        view = surfaceView;
+//        surface = surfaceView.getHolder().getSurface();
         VirtualDisplay display = projection.createVirtualDisplay("ScreenHandler",
                 DISPLAY_WIDTH, DISPLAY_HEIGHT,
                 DisplayMetrics.DENSITY_DEFAULT,
                 DisplayManager.VIRTUAL_DISPLAY_FLAG_AUTO_MIRROR,
-                surface, displayCallback, callbackHandler);
+                surface, displayCallback, null);
+        display.setSurface(surface);
+
         backgroundThread.post(update);
     }
 
@@ -133,30 +144,11 @@ public class ScreenHandler extends Service {
             long delta;
             long sleepFor;
 
-            int count = 0;
-            int max = 50;
+            int max = 1;
             synchronized (this) {
                 while (projection != null && count < max) {
                     try {
-                        try {
-                            Bitmap bitmap = pullBitmap();
-                            File folder = new File(Environment.getExternalStorageDirectory(), "back light work/");
-                            if (!folder.exists())
-                                Log.i("folder", folder.mkdir() + "");
-                            else Log.i("folder", "exists");
-                            File file = new File(folder.getPath(), "bitmap" + count++ + ".png");
-                            Log.i("file", file.toString());
-                            if (!file.exists())
-                                Log.i("create ", "" + file.createNewFile());
-                            else Log.i("file", "exists");
-                            FileOutputStream outputStream = new FileOutputStream(file);
-
-                            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
-                            Log.i("Service", "Done");
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
+                        saveBitmap(pullBitmap(), count++);
 
                         last = now;
                         now = System.currentTimeMillis();
@@ -174,55 +166,86 @@ public class ScreenHandler extends Service {
     };
 
     private void makeSurface() {
-//        int[] textures = new int[1];
-//// generate one texture pointer and bind it as an external texture.
-//        GLES20.glGenTextures(1, textures, 0);
-//        GLES20.glBindTexture(GLES11Ext.GL_TEXTURE_EXTERNAL_OES, textures[0]);
-//// No mip-mapping with camera source.
-//        GLES20.glTexParameterf(GLES11Ext.GL_TEXTURE_EXTERNAL_OES,
-//                GL10.GL_TEXTURE_MIN_FILTER,
-//                GL10.GL_LINEAR);
-//        GLES20.glTexParameterf(GLES11Ext.GL_TEXTURE_EXTERNAL_OES,
-//                GL10.GL_TEXTURE_MAG_FILTER, GL10.GL_LINEAR);
-//// Clamp to edge is only option.
-//        GLES20.glTexParameteri(GLES11Ext.GL_TEXTURE_EXTERNAL_OES,
-//                GL10.GL_TEXTURE_WRAP_S, GL10.GL_CLAMP_TO_EDGE);
-//        GLES20.glTexParameteri(GLES11Ext.GL_TEXTURE_EXTERNAL_OES,
-//                GL10.GL_TEXTURE_WRAP_T, GL10.GL_CLAMP_TO_EDGE);
-//
-//
-//        int texture_id = textures[0];
-//        texture = new SurfaceTexture(texture_id);
-//        surface = new Surface(texture);
+        backgroundThread.post(new Runnable() {
+            @Override
+            public void run() {
+                int contexts[] = new int[1];
+                texture = new SurfaceTexture(contexts[0]);
+                GLES20.glEnable(GLES11Ext.GL_TEXTURE_EXTERNAL_OES);
+                GLES20.glGenTextures(1, contexts, 0);
+                GLES20.glBindTexture(GLES11Ext.GL_TEXTURE_EXTERNAL_OES, contexts[0]);
+                int width = DISPLAY_WIDTH; // size of preview
+                int height = DISPLAY_HEIGHT;  // size of preview
+//                GLES20.glTexImage2D(GLES11Ext.GL_TEXTURE_EXTERNAL_OES, 0, GLES20.GL_RGBA, width,
+//                        height, 0, GLES20.GL_RGBA, GLES20.GL_UNSIGNED_BYTE, null);
+//                GLES20.glTexParameteri(GLES11Ext.GL_TEXTURE_EXTERNAL_OES, GLES20.GL_TEXTURE_WRAP_S, GLES20.GL_CLAMP_TO_EDGE);
+//                GLES20.glTexParameteri(GLES11Ext.GL_TEXTURE_EXTERNAL_OES, GLES20.GL_TEXTURE_WRAP_T, GLES20.GL_CLAMP_TO_EDGE);
+//                GLES20.glTexParameteri(GLES11Ext.GL_TEXTURE_EXTERNAL_OES, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);
+//                GLES20.glTexParameteri(GLES11Ext.GL_TEXTURE_EXTERNAL_OES, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR);
+
+                Log.i(TAG, "ID: " + contexts[0]);
+
+                texture.setDefaultBufferSize(4, 4);
+                texture.setOnFrameAvailableListener(onFrameAvailableListener);
+                surface = new Surface(texture);
+                Log.i(TAG, "Surface valid " + surface.isValid());
+            }
+        });
     }
 
     public Bitmap pullBitmap() {
+        ByteBuffer buffer = ByteBuffer.allocate(DISPLAY_HEIGHT * DISPLAY_WIDTH);
+        GLES20.glReadPixels(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT, ImageFormat.RGB_565, ImageFormat.JPEG, buffer);
+        StringBuilder builder = new StringBuilder();
+        for (int x = 0; x < 50; x++) {
+            builder.append(buffer.get(x)).append(" | ");
+        }
+        Log.i(TAG, builder.toString());
         Bitmap bitmap = Bitmap.createBitmap(DISPLAY_WIDTH, DISPLAY_HEIGHT, Bitmap.Config.RGB_565);
-        Canvas canvas = new Canvas(bitmap);
-        view.draw(canvas);
+        Canvas canvas = surface.lockCanvas(null);
+        canvas.setBitmap(bitmap);
+        surface.unlockCanvasAndPost(canvas);
         return bitmap;
     }
 
-    private int count = 0;
-    private int max = 50;
+    private SurfaceTexture.OnFrameAvailableListener onFrameAvailableListener = new SurfaceTexture.OnFrameAvailableListener() {
+        @Override
+        public void onFrameAvailable(SurfaceTexture surfaceTexture) {
+            Log.i(TAG, "Frame available");
+            bitmapUpdated();
+        }
+    };
+
+    int count = 0;
 
     public void bitmapUpdated() {
-        if (count <= max) {
+        texture.updateTexImage();
+        saveBitmap(pullBitmap(), count++);
+    }
+
+    private void saveBitmap(final Bitmap bitmap, int count) {
+        if (bitmap != null)
             try {
-                Bitmap bitmap = pullBitmap();
-                File file = new File(Environment.getExternalStorageDirectory() + "/back light work/", "bitmap" + count++ + ".png");
-//                    Log.i("make dirs", "" + file.mkdir());
+                File folder = new File(Environment.getExternalStorageDirectory(), "Back Light Work/");
+                if (!folder.exists())
+                    Log.i("folder", folder.mkdir() + "");
+                else Log.i("folder", "exists");
+                File file = new File(folder.getPath(), "bitmap" + count + ".png");
+                Log.i("file", file.toString());
                 if (!file.exists())
                     Log.i("create ", "" + file.createNewFile());
                 else Log.i("file", "exists");
                 FileOutputStream outputStream = new FileOutputStream(file);
 
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
-                bitmap.recycle();
                 Log.i("Service", "Done");
+                bitmap.recycle();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        else {
+            Log.e(TAG, "NULL");
         }
     }
+
 }
