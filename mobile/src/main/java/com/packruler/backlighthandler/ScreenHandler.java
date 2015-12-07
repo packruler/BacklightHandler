@@ -8,9 +8,10 @@ import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
 import android.hardware.display.DisplayManager;
 import android.hardware.display.VirtualDisplay;
+import android.media.Image;
+import android.media.ImageReader;
 import android.media.projection.MediaProjection;
-import android.opengl.GLES11Ext;
-import android.opengl.GLES20;
+import android.opengl.GLSurfaceView;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -24,7 +25,14 @@ import android.view.SurfaceView;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.ByteBuffer;
+import java.nio.Buffer;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.egl.EGLContext;
+import javax.microedition.khronos.opengles.GL10;
 
 /**
  * Created by packruler on 11/25/15.
@@ -42,6 +50,7 @@ public class ScreenHandler extends Service {
     private boolean displayActive;
     public static SurfaceView view;
     public static ScreenHandler instance;
+    private VirtualDisplay display;
 
 
     public static class Binder extends android.os.Binder {
@@ -102,8 +111,8 @@ public class ScreenHandler extends Service {
         backgroundThread = new Handler(thread.getLooper());
 //        backgroundThread = new Handler(Looper.getMainLooper());
 
-        makeSurface();
-        instance = this;
+//        makeSurface();
+//        instance = this;
     }
 
     @Override
@@ -113,6 +122,9 @@ public class ScreenHandler extends Service {
     @Override
     public void onDestroy() {
 //        texture.release();
+        Log.i(TAG, "onDestroy");
+        backgroundThread.getLooper().quitSafely();
+        display.release();
     }
 
     @Nullable
@@ -126,111 +138,161 @@ public class ScreenHandler extends Service {
         this.projection.registerCallback(projectionCallback, callbackHandler);
 //        view = surfaceView;
 //        surface = surfaceView.getHolder().getSurface();
-        VirtualDisplay display = projection.createVirtualDisplay("ScreenHandler",
+        display = projection.createVirtualDisplay("ScreenHandler",
                 DISPLAY_WIDTH, DISPLAY_HEIGHT,
                 DisplayMetrics.DENSITY_DEFAULT,
                 DisplayManager.VIRTUAL_DISPLAY_FLAG_AUTO_MIRROR,
-                surface, displayCallback, null);
-        display.setSurface(surface);
+                null, displayCallback, null);
 
-        backgroundThread.post(update);
+        setImageReader();
     }
-
-    private Runnable update = new Runnable() {
-        @Override
-        public void run() {
-            long last;
-            long now = System.currentTimeMillis();
-            long delta;
-            long sleepFor;
-
-            int max = 1;
-            synchronized (this) {
-                while (projection != null && count < max) {
-                    try {
-                        saveBitmap(pullBitmap(), count++);
-
-                        last = now;
-                        now = System.currentTimeMillis();
-                        delta = now - last;
-                        Log.i("Delta", delta + "");
-                        sleepFor = 50 - delta;
-                        if (sleepFor > 0)
-                            this.wait(sleepFor);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }
-    };
 
     private void makeSurface() {
         backgroundThread.post(new Runnable() {
             @Override
             public void run() {
-                int contexts[] = new int[1];
-                texture = new SurfaceTexture(contexts[0]);
-                GLES20.glEnable(GLES11Ext.GL_TEXTURE_EXTERNAL_OES);
-                GLES20.glGenTextures(1, contexts, 0);
-                GLES20.glBindTexture(GLES11Ext.GL_TEXTURE_EXTERNAL_OES, contexts[0]);
-                int width = DISPLAY_WIDTH; // size of preview
-                int height = DISPLAY_HEIGHT;  // size of preview
+//                int contexts[] = new int[1];
+//                texture = new SurfaceTexture(contexts[0]);
+//                GLES20.glEnable(GLES11Ext.GL_TEXTURE_EXTERNAL_OES);
+//                GLES20.glGenTextures(1, contexts, 0);
+//                GLES20.glBindTexture(GLES11Ext.GL_TEXTURE_EXTERNAL_OES, contexts[0]);
+//                int width = DISPLAY_WIDTH; // size of preview
+//                int height = DISPLAY_HEIGHT;  // size of preview
 //                GLES20.glTexImage2D(GLES11Ext.GL_TEXTURE_EXTERNAL_OES, 0, GLES20.GL_RGBA, width,
 //                        height, 0, GLES20.GL_RGBA, GLES20.GL_UNSIGNED_BYTE, null);
 //                GLES20.glTexParameteri(GLES11Ext.GL_TEXTURE_EXTERNAL_OES, GLES20.GL_TEXTURE_WRAP_S, GLES20.GL_CLAMP_TO_EDGE);
 //                GLES20.glTexParameteri(GLES11Ext.GL_TEXTURE_EXTERNAL_OES, GLES20.GL_TEXTURE_WRAP_T, GLES20.GL_CLAMP_TO_EDGE);
 //                GLES20.glTexParameteri(GLES11Ext.GL_TEXTURE_EXTERNAL_OES, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);
 //                GLES20.glTexParameteri(GLES11Ext.GL_TEXTURE_EXTERNAL_OES, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR);
+//
+//                Log.i(TAG, "ID: " + contexts[0]);
+//
+//                texture = new SurfaceTexture(contexts[0]);
+//                texture.setDefaultBufferSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+//                texture.setOnFrameAvailableListener(onFrameAvailableListener);
+//
+////                CreateSurfaceEGL(texture, DISPLAY_WIDTH, DISPLAY_HEIGHT);
+//                surface = new Surface(texture);
 
-                Log.i(TAG, "ID: " + contexts[0]);
+//                imageReader = ImageReader.newInstance(DISPLAY_WIDTH, DISPLAY_HEIGHT, ImageFormat.RGB_565, 5);
+//                surface = imageReader.getSurface();
+//                imageReader.setOnImageAvailableListener(, backgroundThread);
 
-                texture.setDefaultBufferSize(4, 4);
-                texture.setOnFrameAvailableListener(onFrameAvailableListener);
-                surface = new Surface(texture);
-                Log.i(TAG, "Surface valid " + surface.isValid());
+//                Log.i(TAG, "Surface valid " + surface.isValid());
             }
         });
     }
 
     public Bitmap pullBitmap() {
-        ByteBuffer buffer = ByteBuffer.allocate(DISPLAY_HEIGHT * DISPLAY_WIDTH);
-        GLES20.glReadPixels(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT, ImageFormat.RGB_565, ImageFormat.JPEG, buffer);
-        StringBuilder builder = new StringBuilder();
-        for (int x = 0; x < 50; x++) {
-            builder.append(buffer.get(x)).append(" | ");
-        }
-        Log.i(TAG, builder.toString());
         Bitmap bitmap = Bitmap.createBitmap(DISPLAY_WIDTH, DISPLAY_HEIGHT, Bitmap.Config.RGB_565);
         Canvas canvas = surface.lockCanvas(null);
         canvas.setBitmap(bitmap);
         surface.unlockCanvasAndPost(canvas);
+        texture.releaseTexImage();
         return bitmap;
     }
 
     private SurfaceTexture.OnFrameAvailableListener onFrameAvailableListener = new SurfaceTexture.OnFrameAvailableListener() {
         @Override
         public void onFrameAvailable(SurfaceTexture surfaceTexture) {
+            EGLContext.getEGL();
             Log.i(TAG, "Frame available");
             bitmapUpdated();
+//            texture.releaseTexImage();
         }
     };
 
     int count = 0;
 
     public void bitmapUpdated() {
-        texture.updateTexImage();
-        saveBitmap(pullBitmap(), count++);
+//        texture.updateTexImage();
+        saveBitmap(pullBitmap());
     }
 
-    private void saveBitmap(final Bitmap bitmap, int count) {
-        if (bitmap != null)
+    ImageReader imageReader;
+
+    private void saveBitmap(final Bitmap bitmap) {
+        if (queue.remainingCapacity() > 0) {
+            backgroundSaveHandler.execute(new SaveImage(bitmap));
+        } else {
+            Log.i(TAG, "All working");
+            bitmap.recycle();
+        }
+    }
+
+    private GLSurfaceView.Renderer renderer = new GLSurfaceView.Renderer() {
+        @Override
+        public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+            Log.i(TAG, "onSurfaceCreated");
+        }
+
+        @Override
+        public void onSurfaceChanged(GL10 gl, int width, int height) {
+            Log.i(TAG, "onSurfaceChanged");
+
+        }
+
+        @Override
+        public void onDrawFrame(GL10 gl) {
+            Log.i(TAG, "onDrawFrame");
+        }
+    };
+
+    private Bitmap processImage(Image image) {
+        Bitmap bitmap = Bitmap.createBitmap(DISPLAY_WIDTH, DISPLAY_HEIGHT, Bitmap.Config.RGB_565);
+        if (image != null) {
+            try {
+                Image.Plane[] planes = image.getPlanes();
+                Buffer buffer = planes[0].getBuffer().rewind();
+                Log.i(TAG, buffer.toString());
+                bitmap.copyPixelsFromBuffer(buffer);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                image.close();
+            }
+        }
+        return bitmap;
+    }
+
+    private ImageReader.OnImageAvailableListener imageAvailableListener = new ImageReader.OnImageAvailableListener() {
+        @Override
+        public void onImageAvailable(ImageReader reader) {
+            Log.i(TAG, "New Image");
+            long start = System.currentTimeMillis();
+//            saveBitmap(processImage(reader.acquireLatestImage()), count++ % 3);
+            Bitmap bitmap = processImage(imageReader.acquireLatestImage());
+
+            saveBitmap(bitmap);
+
+//            setImageReader();
+            Log.i(TAG, "Update took: " + (System.currentTimeMillis() - start));
+        }
+    };
+    ArrayBlockingQueue<Runnable> queue = new ArrayBlockingQueue<>(4);
+    ThreadPoolExecutor backgroundSaveHandler = new ThreadPoolExecutor(4, 4, 1, TimeUnit.HOURS, queue);
+
+    private void setImageReader() {
+        imageReader = ImageReader.newInstance(DISPLAY_WIDTH, DISPLAY_HEIGHT, ImageFormat.RGB_565, 5);
+        imageReader.setOnImageAvailableListener(imageAvailableListener, backgroundThread);
+        display.setSurface(imageReader.getSurface());
+    }
+
+    private class SaveImage implements Runnable {
+        private final Bitmap bitmap;
+
+        public SaveImage(Bitmap bmp) {
+            bitmap = bmp;
+        }
+
+        @Override
+        public void run() {
             try {
                 File folder = new File(Environment.getExternalStorageDirectory(), "Back Light Work/");
                 if (!folder.exists())
                     Log.i("folder", folder.mkdir() + "");
                 else Log.i("folder", "exists");
-                File file = new File(folder.getPath(), "bitmap" + count + ".png");
+                File file = new File(folder.getPath(), "bitmap" + count++ + ".png");
                 Log.i("file", file.toString());
                 if (!file.exists())
                     Log.i("create ", "" + file.createNewFile());
@@ -238,14 +300,12 @@ public class ScreenHandler extends Service {
                 FileOutputStream outputStream = new FileOutputStream(file);
 
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
-                Log.i("Service", "Done");
-                bitmap.recycle();
+                Log.i(TAG, file.getName() + " Saved");
             } catch (IOException e) {
                 e.printStackTrace();
+            } finally {
+                bitmap.recycle();
             }
-        else {
-            Log.e(TAG, "NULL");
         }
     }
-
 }
