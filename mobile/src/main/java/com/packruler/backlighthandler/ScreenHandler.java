@@ -22,6 +22,8 @@ import android.util.Log;
 import android.view.Surface;
 import android.view.SurfaceView;
 
+import com.packruler.backlighthandler.Processing.ImageProcessing;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -42,8 +44,8 @@ public class ScreenHandler extends Service {
     private final static int DISPLAY_PLAYING = 0;
     private final static int DISPLAY_PAUSED = 1;
     private final static int DISPLAY_STOPPED = 2;
-    private final static int DISPLAY_WIDTH = 1280;
-    private final static int DISPLAY_HEIGHT = 720;
+    private final static int DISPLAY_WIDTH = 640;
+    private final static int DISPLAY_HEIGHT = 360;
     private MediaProjection projection;
     private SurfaceTexture texture;
     private Surface surface;
@@ -51,6 +53,7 @@ public class ScreenHandler extends Service {
     public static SurfaceView view;
     public static ScreenHandler instance;
     private VirtualDisplay display;
+    private ImageProcessing imageProcessing = new ImageProcessing();
 
 
     public static class Binder extends android.os.Binder {
@@ -147,42 +150,6 @@ public class ScreenHandler extends Service {
         setImageReader();
     }
 
-    private void makeSurface() {
-        backgroundThread.post(new Runnable() {
-            @Override
-            public void run() {
-//                int contexts[] = new int[1];
-//                texture = new SurfaceTexture(contexts[0]);
-//                GLES20.glEnable(GLES11Ext.GL_TEXTURE_EXTERNAL_OES);
-//                GLES20.glGenTextures(1, contexts, 0);
-//                GLES20.glBindTexture(GLES11Ext.GL_TEXTURE_EXTERNAL_OES, contexts[0]);
-//                int width = DISPLAY_WIDTH; // size of preview
-//                int height = DISPLAY_HEIGHT;  // size of preview
-//                GLES20.glTexImage2D(GLES11Ext.GL_TEXTURE_EXTERNAL_OES, 0, GLES20.GL_RGBA, width,
-//                        height, 0, GLES20.GL_RGBA, GLES20.GL_UNSIGNED_BYTE, null);
-//                GLES20.glTexParameteri(GLES11Ext.GL_TEXTURE_EXTERNAL_OES, GLES20.GL_TEXTURE_WRAP_S, GLES20.GL_CLAMP_TO_EDGE);
-//                GLES20.glTexParameteri(GLES11Ext.GL_TEXTURE_EXTERNAL_OES, GLES20.GL_TEXTURE_WRAP_T, GLES20.GL_CLAMP_TO_EDGE);
-//                GLES20.glTexParameteri(GLES11Ext.GL_TEXTURE_EXTERNAL_OES, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);
-//                GLES20.glTexParameteri(GLES11Ext.GL_TEXTURE_EXTERNAL_OES, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR);
-//
-//                Log.i(TAG, "ID: " + contexts[0]);
-//
-//                texture = new SurfaceTexture(contexts[0]);
-//                texture.setDefaultBufferSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
-//                texture.setOnFrameAvailableListener(onFrameAvailableListener);
-//
-////                CreateSurfaceEGL(texture, DISPLAY_WIDTH, DISPLAY_HEIGHT);
-//                surface = new Surface(texture);
-
-//                imageReader = ImageReader.newInstance(DISPLAY_WIDTH, DISPLAY_HEIGHT, ImageFormat.RGB_565, 5);
-//                surface = imageReader.getSurface();
-//                imageReader.setOnImageAvailableListener(, backgroundThread);
-
-//                Log.i(TAG, "Surface valid " + surface.isValid());
-            }
-        });
-    }
-
     public Bitmap pullBitmap() {
         Bitmap bitmap = Bitmap.createBitmap(DISPLAY_WIDTH, DISPLAY_HEIGHT, Bitmap.Config.RGB_565);
         Canvas canvas = surface.lockCanvas(null);
@@ -260,12 +227,12 @@ public class ScreenHandler extends Service {
         public void onImageAvailable(ImageReader reader) {
             Log.i(TAG, "New Image");
             long start = System.currentTimeMillis();
-//            saveBitmap(processImage(reader.acquireLatestImage()), count++ % 3);
-            Bitmap bitmap = processImage(imageReader.acquireLatestImage());
 
-            saveBitmap(bitmap);
+            imageProcessing.process(reader.acquireLatestImage());
+//            Bitmap bitmap = processImage(imageReader.acquireLatestImage());
+//
+//            saveBitmap(bitmap);
 
-//            setImageReader();
             Log.i(TAG, "Update took: " + (System.currentTimeMillis() - start));
         }
     };
@@ -290,7 +257,7 @@ public class ScreenHandler extends Service {
             try {
                 File folder = new File(Environment.getExternalStorageDirectory(), "Back Light Work/");
                 if (!folder.exists())
-                    Log.i("folder", folder.mkdir() + "");
+                    Log.i("folder", folder.mkdirs() + "");
                 else Log.i("folder", "exists");
                 File file = new File(folder.getPath(), "bitmap" + count++ + ".png");
                 Log.i("file", file.toString());
