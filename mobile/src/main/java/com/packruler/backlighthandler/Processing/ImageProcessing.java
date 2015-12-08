@@ -21,6 +21,8 @@ public class ImageProcessing {
     private int[] vR, vG, vB;
     private int hSpacing, vSpacing;
 
+    private native int[] processNative(int[] buffer);
+
 
     public ImageProcessing() {
         xDepth = 20;
@@ -59,15 +61,15 @@ public class ImageProcessing {
         int y = 0;
         StringBuffer buffer = new StringBuffer("Pixels:\n");
 //        while (byteBuffer.)
-            for (int pixel = 0; pixel < pixelArray.length; pixel++) {
-                if (x == iWidth) {
-                    x = 0;
-                    y++;
-                    buffer.append("\n");
-                }
-                x++;
-                buffer.append('(').append(Integer.toHexString(x)).append(',').append(Integer.toHexString(y)).append(')');
+        for (int pixel = 0; pixel < pixelArray.length; pixel++) {
+            if (x == iWidth) {
+                x = 0;
+                y++;
+                buffer.append("\n");
             }
+            x++;
+            buffer.append('(').append(Integer.toHexString(x)).append(',').append(Integer.toHexString(y)).append(')');
+        }
         Log.i(TAG, buffer.toString());
 
 //        int yOffset = -1;
