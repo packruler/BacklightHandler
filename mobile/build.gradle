@@ -1,20 +1,51 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.model.application'
 
-android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+model {
+    android {
+        compileSdkVersion = 23
+        buildToolsVersion = "23.0.2"
 
-    defaultConfig {
-        applicationId "com.packruler.backlighthandler"
-        minSdkVersion 21
-        targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        defaultConfig.with {
+            applicationId = "com.packruler.backlighthandler"
+            minSdkVersion.apiLevel = 21
+            targetSdkVersion.apiLevel = 23
+            versionCode = 1
+            versionName = "1.0"
+
+            buildConfigFields.with {
+                create() {
+                    type = "int"
+                    name = "VALUE"
+                    value = "1"
+                }
+            }
+        }
+
     }
-    buildTypes {
+    android.ndk {
+        moduleName = "mobile"
+    }
+
+    android.buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled = false
+            proguardFiles.add(file('proguard-rules.pro'))
+        }
+    }
+
+    android.productFlavors {
+        create("flavor1") {
+            applicationId = "com.app"
+        }
+    }
+
+    android.sources {
+        main {
+            java {
+                source {
+                    srcDir "src"
+                }
+            }
         }
     }
 }
