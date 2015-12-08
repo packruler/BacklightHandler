@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -99,6 +100,10 @@ public class BacklightHandlerSetup extends AppCompatActivity {
     }
 
     private void stopScreenHandler() {
-        unbindService(connection);
+        try {
+            unbindService(connection);
+        } catch (IllegalArgumentException e) {
+            Toast.makeText(this, "No bound service", Toast.LENGTH_SHORT).show();
+        }
     }
 }

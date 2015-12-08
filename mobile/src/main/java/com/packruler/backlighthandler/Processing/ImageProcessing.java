@@ -18,6 +18,7 @@ public class ImageProcessing {
     private int xDepth;
     private int yDepth;
     private Rect cropRect;
+    private int[] green;
 
 
     public ImageProcessing() {
@@ -31,6 +32,10 @@ public class ImageProcessing {
         this.bottomGab = bottomGab;
         this.xDepth = xDepth;
         this.yDepth = yDepth;
+    }
+
+    private void setup() {
+
     }
 
     public void process(Image image) {
@@ -63,7 +68,7 @@ public class ImageProcessing {
         if (xOffset < 0)
             xOffset = 0;
 
-        StringBuffer buffer = new StringBuffer("Array: ");
+        StringBuffer buffer = new StringBuffer("Colors: ");
         for (int y = yOffset; y < bitmap.getHeight() - yOffset; y++) {
             for (int x = xOffset; x < bitmap.getWidth() - xOffset; x++) {
                 pixel = bitmap.getPixel(x, bitmap.getHeight() / 2);
