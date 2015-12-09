@@ -24,6 +24,7 @@ model {
     }
     android.ndk {
         moduleName = "mobile"
+        debuggable = true
     }
 
     android.buildTypes {
@@ -32,22 +33,22 @@ model {
             proguardFiles.add(file('proguard-rules.pro'))
         }
     }
+//    sourceSets {
+//        main {
+//            jniLibs.srcDirs = ['native-libs']
+//            jni.srcDirs = [] //disable automatic ndk-build
+//        }
+//    }
 
-    android.productFlavors {
-        create("flavor1") {
-            applicationId = "com.app"
-        }
-    }
-
-    android.sources {
-        main {
-            java {
-                source {
-                    srcDir "src"
-                }
-            }
-        }
-    }
+//    android.sources {
+//        main {
+//            java {
+//                source {
+//                    srcDir "src"
+//                }
+//            }
+//        }
+//    }
 }
 
 dependencies {
