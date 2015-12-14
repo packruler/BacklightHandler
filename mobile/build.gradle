@@ -1,60 +1,67 @@
-apply plugin: 'com.android.model.application'
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.protobuf'
 
-model {
-    android {
-        compileSdkVersion = 23
-        buildToolsVersion = "23.0.2"
+android {
+    compileSdkVersion 23
+    buildToolsVersion '23.0.2'
 
-        defaultConfig.with {
-            applicationId = "com.packruler.backlighthandler"
-            minSdkVersion.apiLevel = 21
-            targetSdkVersion.apiLevel = 23
-            versionCode = 1
-            versionName = "1.0"
 
-            buildConfigFields.with {
-                create() {
-                    type = "int"
-                    name = "VALUE"
-                    value = "1"
-                }
-            }
-        }
-
+    defaultConfig {
+        applicationId "com.packruler.backlighthandler"
+        minSdkVersion 21
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
     }
-    android.ndk {
-        moduleName = "mobile"
-        debuggable = true
-    }
-
-    android.buildTypes {
+    buildTypes {
         release {
-            minifyEnabled = false
-            proguardFiles.add(file('proguard-rules.pro'))
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            debuggable true
+            jniDebuggable true
         }
     }
-//    sourceSets {
-//        main {
-//            jniLibs.srcDirs = ['native-libs']
-//            jni.srcDirs = [] //disable automatic ndk-build
-//        }
-//    }
-
-//    android.sources {
-//        main {
-//            java {
-//                source {
-//                    srcDir "src"
-//                }
-//            }
-//        }
-//    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
 }
 
+protobuf {
+    // Configure the protoc executable
+    protoc {
+        // Download from repositories
+        artifact = 'com.google.protobuf:protoc:3.0.0-beta-1'
+    }
+
+    generateProtoTasks {
+        all()*.builtins {
+            javanano {
+                // Options added to --javanano_out
+                option 'java_multiple_files=false'
+                option 'ignore_services=true'
+                option 'store_unknown_fields=true'
+            }
+        }
+//        ofNonTest()*.plugins {
+//            grpc {
+//                // Options added to --grpc_out
+//                option 'nano=true'
+//            }
+//        }
+    }
+}
+
+
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:support-v4:23.1.1'
     compile 'com.android.support:design:23.1.1'
+    compile 'com.google.protobuf:protobuf-java-util:3.0.0-beta-1'
+    compile 'com.google.protobuf:protobuf-java:3.0.0-beta-1'
+    compile 'com.google.protobuf.nano:protobuf-javanano:3.0.0-alpha-4'
 }
