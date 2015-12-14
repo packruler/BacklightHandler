@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.packruler.backlighthandler"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -41,8 +41,10 @@ protobuf {
             javanano {
                 // Options added to --javanano_out
                 option 'java_multiple_files=false'
-                option 'ignore_services=true'
+                option 'ignore_services=false'
                 option 'store_unknown_fields=true'
+                option 'optional_field_style=accessors'
+                option 'optimize_for=LITE_RUNTIME'
             }
         }
 //        ofNonTest()*.plugins {

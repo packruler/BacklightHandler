@@ -44,8 +44,8 @@ public class ScreenHandler extends Service {
     private final static int DISPLAY_PLAYING = 0;
     private final static int DISPLAY_PAUSED = 1;
     private final static int DISPLAY_STOPPED = 2;
-    public final static int DISPLAY_WIDTH = 640;
-    public final static int DISPLAY_HEIGHT = 360;
+    public final static int DISPLAY_WIDTH = 320;
+    public final static int DISPLAY_HEIGHT = 180;
     private MediaProjection projection;
     private SurfaceTexture texture;
     private Surface surface;
@@ -220,15 +220,17 @@ public class ScreenHandler extends Service {
         public void onImageAvailable(ImageReader reader) {
             Log.i(TAG, "New Image");
             long start = System.currentTimeMillis();
+            if (imageProcessing == null)
+                imageProcessing = new ImageProcessing();
             try {
-                imageProcessing.process(reader.acquireLatestImage());
+                imageProcessing.process(reader.acquireLatestImage(), 100);
             } catch (NullPointerException e) {
                 Log.e(TAG, e.getMessage());
             }
 
             Log.i(TAG, "Update took: " + (System.currentTimeMillis() - start));
-            display.release();
-            imageReader.close();
+//            display.release();
+//            imageReader.close();
         }
     };
     ArrayBlockingQueue<Runnable> queue = new ArrayBlockingQueue<>(4);
