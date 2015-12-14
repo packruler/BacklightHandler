@@ -3,20 +3,14 @@ package com.packruler.backlighthandler;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.graphics.Bitmap;
 import android.media.projection.MediaProjectionManager;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Toast;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 public class BacklightHandlerSetup extends AppCompatActivity {
     private static final int MEDIA_PROJECTION_SETUP = 1;
@@ -46,35 +40,13 @@ public class BacklightHandlerSetup extends AppCompatActivity {
                 stopScreenHandler();
             }
         });
-
-        findViewById(R.id.pull).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (screenHandler != null) {
-                    Bitmap bitmap = screenHandler.pullBitmap();
-                    try {
-                        File file = new File(Environment.getExternalStorageDirectory(), "bitmap.png");
-//                    Log.i("make dirs", "" + file.mkdir());
-                        if (!file.exists())
-                            Log.i("create ", "" + file.createNewFile());
-                        else Log.i("file", "exists");
-                        FileOutputStream outputStream = new FileOutputStream(file);
-
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
-                        Log.i("Service", "Done");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == MEDIA_PROJECTION_SETUP)
-            screenHandler.setProjection(mediaProjectionManager.getMediaProjection(resultCode, data), surfaceView);
+            screenHandler.setProjection(mediaProjectionManager.getMediaProjection(resultCode, data));
 
     }
 
